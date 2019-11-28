@@ -64,17 +64,18 @@ def change():
             conn = mysql.connect()
             cursor = conn.cursor()
 
-            judul = request.form['judul']
-            isbn = request.form['isbn']
-            penulis = request.form['penulis']
-            penerbit = request.form['penerbit']
-            tahun_terbit = request.form['tahun_terbit']
-            harga = request.form['Harga']
+            judul = request.form.get('judul')
+            isbn = request.form.get('isbn')
+            penulis = request.form.get('penulis')
+            penerbit = request.form.get('penerbit')
+            tahun_terbit = request.form.get('tahun_terbit')
+            harga = request.form.get('Harga')
+            berat = request.form.get('Berat')
 
 
-            query = "INSERT INTO book(Judul, ISBN, Penulis, Penerbit, tahun_terbit, Harga) VALUES(%s,%s,%s,%s,%s,%d)"
+            query = "INSERT INTO book(Judul, Penulis, Penerbit, ISBN, Tahun_Terbit, Harga, Berat) VALUES(%s,%s,%s,%s,%s,%s,%s)"
 
-            data = (judul, isbn, penulis, penerbit, tahun_terbit, Harga)
+            data = (judul, penulis, penerbit, isbn, tahun_terbit, harga, berat)
             cursor.execute(query, data)
             conn.commit()
             res = {
@@ -85,7 +86,8 @@ def change():
                     'Penulis' : penulis,
                     'Penerbit' : penerbit,
                     'Tahun_Terbit' : tahun_terbit,
-                    'Harga' : Harga,
+                    'Harga' : harga,
+                    'Berat' : berat,
                     }
                 }
 
@@ -127,9 +129,10 @@ def change():
             penerbit = request.form.get('penerbit')
             tahun_terbit = request.form.get('tahun_terbit')
             harga = request.form.get('Harga')
+            berat = request.form.get('Berat')
 
-            query = "UPDATE book SET ISBN=%s, Penulis=%s, Penerbit=%s, tahun_terbit=%s, Harga=%s WHERE Judul=%s"
-            data = (isbn, penulis, penerbit, tahun_terbit, harga, judul)
+            query = "UPDATE book SET ISBN=%s, Penulis=%s, Penerbit=%s, tahun_terbit=%s, Harga=%s, Berat=%s WHERE Judul=%s"
+            data = (isbn, penulis, penerbit, tahun_terbit, harga, berat, judul)
             cursor.execute(query,data)
             conn.commit()
 
@@ -142,6 +145,7 @@ def change():
                     'Penerbit' : penerbit,
                     'tahun_terbit' : tahun_terbit,
                     'Harga' : harga,
+                    'Berat' : berat
                     }
                 }  
         except Exception as e:
