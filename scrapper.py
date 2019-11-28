@@ -62,24 +62,25 @@ def isiDbase():
 
             #Harga
             Harga = random.randrange(100000,500000,1000)
+            Berat = random.randrange(1,10)
 
             #insert into database
-            instance = (ISBN, Judul, Penulis, Penerbit, Tahun_terbit, Harga)
+            instance = (ISBN, Judul, Penulis, Penerbit, Tahun_terbit, Harga, Berat)
             query = """INSERT INTO book(
                 ISBN,
                 Judul,
                 Penulis,
                 Penerbit,
                 Tahun_Terbit,
-                Harga
+                Harga,
+                Berat
                 )
-                Values (%s,%s,%s,%s,%s,%s)"""
+                Values (%s,%s,%s,%s,%s,%s,%s)"""
             cursor.execute(query, instance)
             conn.commit()
 
         #menghandle exception
-        except :
-            print()
+        except ():
             continue
         
     cursor.close()
