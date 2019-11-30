@@ -2,12 +2,14 @@ import pymysql
 from flaskext.mysql import MySQL
 from flask import Flask, request, jsonify
 from flask_restful import Resource, Api
+from flask_cors import CORS
 from json import dumps
 import mysql.connector
 import json
 import requests
 
 app = Flask(__name__)
+CORS(app)
 mysql = MySQL(app)
 app.config['DEBUG'] = True
 
