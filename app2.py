@@ -80,9 +80,16 @@ def index():
     if request.method == 'GET':
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+        _name = request.args.get('nama')
         try:
-            cursor.execute("SELECT * FROM orders")
-            res = cursor.fetchall()
+            if (nama==None):
+                cursor.execute("SELECT * FROM orders")
+                res = cursor.fetchall()
+            else :
+                cursor.execute("SELECT * FROM orders WHERE name=%s", nama)
+                res = cursor.fetchall()
+                
         except Exception as e:
             return e
         finally:
