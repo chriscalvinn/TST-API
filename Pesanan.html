@@ -17,7 +17,7 @@
           <p class="lead mb-3 text-left">Buku yang telah dipesan: </p>
           <font color="white">
           </font>
-          <table class="table1">
+          <table class="table1" id="tabelpesanan">
             <thead id="tabheadpesanan">
               <tr>
                 <th>
@@ -47,6 +47,39 @@
   <script src="js/jquery-3.3.1.slim.min.js"></script>
   <script src="js/popper.js/1.14.6/umd/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  
+  <script>
+	$(document).ready(function(){
+		tab = document.getElementById('tabbodypesanan');
+		document.getElementById('tabelpesanan').style.display = 'block';
+		$.ajax({
+			url: 'http://127.0.0.1:5000/api/order',
+			type:'GET',
+			dataType: 'json',
+			success: function(response) {
+				content="";
+				$.each(response, function(key, value){
+					value.forEach(function(element){
+						content +=
+						"<tr>" +
+							"<td><font color = "+'"white"'+">"+element.date+"</font></th>\n" +
+							"<td><font color = "+'"white"'+">"+element.id+"</font></th>\n" +
+							"<td><font color = "+'"white"'+">"+element.goods+"</font></th>\n" +
+							"<td><font color = "+'"white"'+">"+element.destination+"</font></th>\n" +
+							"<td><font color = "+'"white"'+">"+element.cost+"</font></th>\n" +
+							"<td><a href=Total.html onclick=getData() id=\"order\"> Detail</a>" +
+							"</tr>";
+						});
+				});
+				tab.innerHTML = content;
+			},
+			error: function(response) {
+				console.log(response);
+			}
+		});
+	});
+  </script>
 </body>
 
 </html>

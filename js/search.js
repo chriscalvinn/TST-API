@@ -1,5 +1,9 @@
 
 
+function getData(){
+	
+}
+
 function search(){
 	
 	judul = document.getElementById("judul").value

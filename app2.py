@@ -83,11 +83,11 @@ def index():
 
         _name = request.args.get('nama')
         try:
-            if (nama==None):
+            if (_name==None):
                 cursor.execute("SELECT * FROM orders")
                 res = cursor.fetchall()
             else :
-                cursor.execute("SELECT * FROM orders WHERE name=%s", nama)
+                cursor.execute("SELECT * FROM orders WHERE name=%s", _name)
                 res = cursor.fetchall()
                 
         except Exception as e:
