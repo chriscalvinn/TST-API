@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2019 at 12:48 PM
+-- Generation Time: Dec 02, 2019 at 05:45 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -119,6 +119,16 @@ CREATE TABLE `orders` (
   `date` varchar(255) DEFAULT NULL,
   `updatedDate` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `name`, `origin`, `destination`, `goods`, `weight`, `cost`, `courier`, `status`, `date`, `updatedDate`) VALUES
+('421354866830275', 'calvin', 'Bandung', 'Bogor', 'Test Book', '1700', '20000', 'jne', 'packing', '02/12 2019', '02/12/2019'),
+('536476711830240', 'cal', 'Yogyakarta', 'Denpasar', 'buku', '1700', '52000', 'jne', 'packing', '30/11 2019', '30/11/2019'),
+('784434881241661', 'calvin', 'Yogyakarta', 'Denpasar', 'Test Book', '1700', '52000', 'jne', 'packing', '02/12 2019', '02/12/2019'),
+('885838000855886', 'cal', 'Yogyakarta', 'Denpasar', 'buku', '1700', '52000', 'jne', 'packing', '02/12 2019', '02/12/2019');
 
 --
 -- Indexes for dumped tables
