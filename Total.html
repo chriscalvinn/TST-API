@@ -112,6 +112,7 @@
 			contentType: 'application/json',
 			data: JSON.stringify({"weight":berat,"courier":courier,"origin":origin,"destination":alamat,"name":nama,"goods":judul,}),
 			dataType: 'json',
+			processData: false,
 			success: function(response) {
 				document.getElementById("ongkir").innerHTML = response.result.data.cost;
 				document.getElementById("total").innerHTML = response.result.data.cost+document.getElementById("harga").innerHTML;
