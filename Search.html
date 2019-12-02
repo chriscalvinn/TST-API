@@ -64,18 +64,18 @@
   
   <script>
 	  $(document).ready(function(){
-			 tabmodiv = document.getElementById('tabbodybuku');
+			 tab = document.getElementById('tabbodybuku');
 			 document.getElementById('tabelbuku').style.display = 'block';
 			 $.ajax({
 				url: 'http://127.0.0.1:5001/book',
 				type:'GET',
 				dataType: 'json',
 				success: function(response) {
-					content="";
+					tab.innerHTML=''
 					var id = 1;
 					$.each(response, function(key, value){
 						value.forEach(function(element){
-							content +=
+							content =
 								"<tr>" +
 								"<td><font color = "+'"white"'+">"+element.Judul+"</font></th>\n" +
 								"<td><font color = "+'"white"'+">"+element.Penulis+"</font></th>\n" +
@@ -85,12 +85,12 @@
 								"<td><font color = "+'"white"'+">"+element.Berat+"</font></th>\n" +
 								"<td><a href="+'""'+" id="+id+"> Detail</a>" +
 								"</tr>";
-							tabmodiv.innerHTML = content;
+							tab.innerHTML += content;
 							getData(element.Judul,id)
 							id++;
 							});
 							
-							console.log(content);
+							console.log(tab.innerHTML);
 					});
 				},
 				error: function(response) {

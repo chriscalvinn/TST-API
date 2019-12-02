@@ -22,8 +22,47 @@
     </div>
   </div>
   <script src="js/jquery-3.3.1.slim.min.js"></script>
-  <script src="js/popper.js/1.14.6/umd/popper.min.js"></script>
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script>
+	//getquery
+	function getQueryVariable(variable) {
+		var query = window.location.search.substring(1);
+		var vars = query.split('&');
+		for (var i = 0; i < vars.length; i++) {
+			var pair = vars[i].split('=');
+			if (decodeURIComponent(pair[0]) == variable) {
+				return decodeURIComponent(pair[1]);
+			}
+		}
+		console.log('Query variable %s not found', variable);
+	}
+  </script>
+  <script>
+	function getHargaBuku(callback){
+		var judul = getQueryVariable("judul");
+		var harga = 0
+		
+		$(document).ready(function(){
+			$.ajax({
+				async:false
+				url: 'http://127.0.0.1:5001/book?judul='+judul,
+				type:'GET',
+				dataType: 'json',
+				success: function(response) {
+					harga = response.result[0].Harga;
+					console.log(harga);
+				},
+				error: function(response) {
+					console.log(response);
+				}
+			});
+		});
+		
+		return harga
+	}
+  </script>
 
 </body>
 </html>
