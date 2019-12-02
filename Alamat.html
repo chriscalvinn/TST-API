@@ -18,32 +18,54 @@
             <div class="form-group"> <label>Nama</label> <input id="nama" type="text" class="form-control" placeholder="Masukkan nama" name="Form nama"> </div>
             <div class="form-group"> <label>Kota</label> </div>
             <div class="form-group">
-             <select>
+             <select id="dropdown">
 					 <option>- Pilih Kota -</option>
-					  <option>Surabaya</option>
-					  <option>Bandung</option>
-					  <option>Jakarta</option>
-					  <option>Yogyakarta</option>
-					  <option>Depok</option>
-					  <option>Bogor</option>
-					  <option>Solo</option>
-					  <option>Semarang</option>
-					  <option>Bekasi</option>
-					  <option>Malang</option>
-					  <option>Bogor</option>
-					  <option>Tangerang</option>
+					  <option value="444">Surabaya</option>
+					  <option value="22">Bandung</option>
+					  <option value="151">Jakarta Barat</option>
+					  <option value="501">Yogyakarta</option>
+					  <option value="115">Depok</option>
+					  <option value="78">Bogor</option>
+					  <option value="445">Solo</option>
+					  <option value="398">Semarang</option>
+					  <option value="54">Bekasi</option>
+					  <option value="255">Malang</option>
+					  <option value="78">Bogor</option>
+					  <option value="455">Tangerang</option>
 				   </select>
             </div>
           </form>
-          <p class="lead mb-0">Klik "Lanjutkan" untuk memilih buku yang ingin Anda pesan</p><a href="Search.html" class="btn btn-primary my-3 mx-1" onclick="saveData()">Lanjutkan</a>
+          <p class="lead mb-0">Klik "Lanjutkan" untuk memilih buku yang ingin Anda pesan</p><a href="Search.html" class="btn btn-primary my-3 mx-1" onclick="getOrigin()">Lanjutkan</a>
         </div>
       </div>
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="js/jquery-3.3.1.slim.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js" ></script>
   <script src="js/main.js"></script>
+  <script>
+	function getOrigin(){
+		var sel = document.getElementById("dropdown")
+	
+		var opt;
+		for ( var i = 0, len = sel.options.length; i < len; i++ ) {
+			opt = sel.options[i];
+			if ( opt.selected === true ) {
+				break;
+			}
+		}
+	
+		window.onload = function() {
+			window.localStorage.setItem("origin",JSON.stringify(opt.value));
+		}
+		if (window.localstorage){
+			console.log(opt.value);
+		} else {
+			console.log("gagal");
+		}
+	}
+  </script>
 </body>
 
 </html>
