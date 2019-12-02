@@ -19,7 +19,7 @@
 					<p class="lead mb-3 ml-5 text-left">Biaya Buku:</p>
 				</div>
 				<div class="col">
-					<p class="lead mb-3 mr-5 text-right text-muted">harga di sini</p>
+					<p class="lead mb-3 mr-5 text-right text-muted" id="harga">harga di sini</p>
 				</div>
 			</div>
 			<div class="row">
@@ -27,7 +27,7 @@
 					<p class="lead ml-5 text-left">Biaya Antar:</p>
 				</div>
 				<div class="col">
-					<p class="lead mb-3 mr-5 text-right text-muted">harga di sini</p>
+					<p class="lead mb-3 mr-5 text-right text-muted" id="ongkir">harga di sini</p>
 				</div>
 			</div>
 			<div class="row">
@@ -35,7 +35,7 @@
 					<p class="lead mb-5 ml-5 text-left pt-1" style="	box-shadow: inset 0px 5px   white;">Total Biaya:&nbsp;</p>
 				</div>
 				<div class="col">
-					<p class="lead mb-3 mr-5 text-right text-muted">harga di sini</p>
+					<p class="lead mb-3 mr-5 text-right text-muted" id="total">harga di sini</p>
 				</div>
 			</div>			
 			<a href="Thanks.html" class="btn btn-lg btn-primary mx-1">Bayar</a>
@@ -62,28 +62,66 @@
 	}
   </script>
   <script>
-	function getHargaBuku(callback){
+	$(document).ready(function(){
 		var judul = getQueryVariable("judul");
-		var harga = 0
-		
+		$.ajax({
+			url: 'http://127.0.0.1:5001/book?judul='+judul,
+			type:'GET',
+			dataType: 'json',
+			success: function(response) {
+				document.getElementById("harga").innerHTML = response.result[0].Harga;
+			},
+			error: function(response) {
+				console.log(response);
+			}
+		});
+	});
+  </script>
+  <script>
+	//getweight
+	function getWeight(){
 		$(document).ready(function(){
+			var judul = getQueryVariable("judul");
 			$.ajax({
-				async:false
 				url: 'http://127.0.0.1:5001/book?judul='+judul,
 				type:'GET',
 				dataType: 'json',
 				success: function(response) {
-					harga = response.result[0].Harga;
-					console.log(harga);
+					return 1000*response.result[0].Berat;
 				},
 				error: function(response) {
 					console.log(response);
 				}
 			});
 		});
-		
-		return harga
 	}
+  </script>
+  <script>
+	// POST
+	$(document).ready(function(){
+		var judul = getQueryVariable("judul");
+		var nama = getQueryVariable("nama");
+		var alamat = getQueryVariable("alamat");
+		var origin = 22;
+		var berat = getWeight();
+		var courier = "jne";
+		
+		$.ajax({
+			url: 'localhost:5000/api/order',
+			type:'POST',
+			contentType: 'application/json',
+			data: JSON.stringify({"weight":berat,"courier":courier,"origin":origin,"destination":alamat,"name":nama,"goods":judul,}),
+			dataType: 'json',
+			success: function(response) {
+				document.getElementById("ongkir").innerHTML = response.result.data.cost;
+				document.getElementById("total").innerHTML = response.result.data.cost+document.getElementById("harga").innerHTML;
+			},
+			error: function(response) {
+				console.log(response);
+			}
+		});
+	});
+
   </script>
 
 </body>
