@@ -72,6 +72,7 @@
 				dataType: 'json',
 				success: function(response) {
 					content="";
+					var id = 1;
 					$.each(response, function(key, value){
 						value.forEach(function(element){
 							content +=
@@ -82,11 +83,15 @@
 								"<td><font color = "+'"white"'+">"+element.Tahun_Terbit+"</font></th>\n" +
 								"<td><font color = "+'"white"'+">"+element.Harga+"</font></th>\n" +
 								"<td><font color = "+'"white"'+">"+element.Berat+"</font></th>\n" +
-								"<td><a href=Total.html onclick=getData() id=\"order\"> Detail</a>" +
+								"<td><a href="+'""'+" id="+id+"> Detail</a>" +
 								"</tr>";
+							tabmodiv.innerHTML = content;
+							getData(element.Judul,id)
+							id++;
 							});
+							
+							console.log(content);
 					});
-					tabmodiv.innerHTML = content;
 				},
 				error: function(response) {
 					console.log(response);

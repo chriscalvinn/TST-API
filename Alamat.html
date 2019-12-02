@@ -35,7 +35,7 @@
 				   </select>
             </div>
           </form>
-          <p class="lead mb-0">Klik "Lanjutkan" untuk memilih buku yang ingin Anda pesan</p><a href="Search.html" class="btn btn-primary my-3 mx-1" onclick="getOrigin()">Lanjutkan</a>
+          <p class="lead mb-0">Klik "Lanjutkan" untuk memilih buku yang ingin Anda pesan</p><a href="" id="redirect" class="btn btn-primary my-3 mx-1" onclick="getOrigin()">Lanjutkan</a>
         </div>
       </div>
     </div>
@@ -44,6 +44,7 @@
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js" ></script>
   <script src="js/main.js"></script>
+  <script src="js/alamat.js"></script>
   <script>
 	function getOrigin(){
 		var sel = document.getElementById("dropdown")
@@ -55,15 +56,10 @@
 				break;
 			}
 		}
+		var alamat = opt.value
+		var nama = document.getElementById("nama").value
 	
-		window.onload = function() {
-			window.localStorage.setItem("origin",JSON.stringify(opt.value));
-		}
-		if (window.localstorage){
-			console.log(opt.value);
-		} else {
-			console.log("gagal");
-		}
+		return getQuery(nama, alamat)
 	}
   </script>
 </body>

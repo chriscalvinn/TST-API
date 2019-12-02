@@ -1,7 +1,24 @@
 
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) == variable) {
+            return decodeURIComponent(pair[1]);
+        }
+    }
+    console.log('Query variable %s not found', variable);
+}
 
-function getData(){
+function getData(judul,id){
+	var nama = getQueryVariable("nama");
+	var alamat = getQueryVariable("alamat");
 	
+	uri="Total.html?"
+	uri+="nama="+nama+"&alamat="+alamat+"&judul="+judul;
+	console.log(id);
+	document.getElementById(id).href=uri;
 }
 
 function search(){
