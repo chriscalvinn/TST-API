@@ -65,7 +65,7 @@
 	$(document).ready(function(){
 		var judul = getQueryVariable("judul");
 		$.ajax({
-			url: 'http://127.0.0.1:5001/book?judul='+judul,
+			url: 'http://34.198.244.98:5001/book?judul='+judul,
 			type:'GET',
 			dataType: 'json',
 			success: function(response) {
@@ -83,7 +83,7 @@
 		$(document).ready(function(){
 			var judul = getQueryVariable("judul");
 			$.ajax({
-				url: 'http://127.0.0.1:5001/book?judul='+judul,
+				url: 'http://34.198.244.98:5001/book?judul='+judul,
 				type:'GET',
 				dataType: 'json',
 				success: function(response) {
@@ -107,7 +107,7 @@
 		var courier = "jne";
 		
 		$.ajax({
-			url: 'localhost:5000/api/order',
+			url: '34.198.244.98:5000/api/order',
 			type:'POST',
 			contentType: 'application/json',
 			data: JSON.stringify({"weight":berat,"courier":courier,"origin":origin,"destination":alamat,"name":nama,"goods":judul,}),
