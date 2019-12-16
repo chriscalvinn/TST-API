@@ -26,9 +26,9 @@ function search(){
 	judul = document.getElementById("judul").value
 	if(judul!=''){
 		console.log(judul);
-		var uri = 'http://127.0.0.1:5001/book?judul='+judul
+		var uri = 'http://34.198.244.98:5001/book?judul='+judul
 	} else {
-		var uri = 'http://127.0.0.1:5001/book'
+		var uri = 'http://34.198.244.98:5001/book'
 	}
 	console.log(uri);
 	$(document).ready(function(){
